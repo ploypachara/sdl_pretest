@@ -1,534 +1,509 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="th">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Thonburi}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Helvetica; color: #000000; -webkit-text-stroke: #000000}
-    span.s1 {font: 12.0px Thonburi}
-    span.s2 {font: 12.0px Helvetica}
-    span.s3 {font: 12.0px 'Apple Color Emoji'}
-    span.s4 {font: 12.0px 'Lucida Grande'}
-    span.s5 {font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: 0px #000000}
-    span.s6 {font-kerning: none}
-    span.s7 {font: 12.0px Times; font-kerning: none}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบประเมิน Self-Directed Learning</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif; background: #f0f4f8; color: #1a1a2e; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { text-align: center; color: #16213e; margin-bottom: 5px; font-size: 1.8em; }
+    .subtitle { text-align: center; color: #555; margin-bottom: 30px; font-size: 0.95em; }
+    .section { background: #fff; border-radius: 12px; padding: 25px 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .section-title { font-size: 1.2em; font-weight: 700; color: #0f3460; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 3px solid #e94560; display: inline-block; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9em; color: #333; }
+    label small { font-weight: 400; color: #777; }
+    input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 0.95em; transition: 0.2s; font-family: inherit; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #e94560; box-shadow: 0 0 0 3px rgba(233,69,96,0.15); }
+    .rating-table-wrap { overflow-x: auto; margin-bottom: 25px; }
+    .rating-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+    .rating-table th { background: #16213e; color: #fff; padding: 10px 8px; text-align: center; font-weight: 600; }
+    .rating-table th:first-child { text-align: left; min-width: 220px; }
+    .rating-table td { padding: 8px 6px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; }
+    .rating-table tr:hover { background: #f8fafc; }
+    .rating-table .q-text { font-size: 0.88em; line-height: 1.4; }
+    .rating-table .q-text small { display: block; color: #888; font-style: italic; font-weight: 400; }
+    .cat-header { background: #e94560; color: #fff; font-weight: 700; font-size: 0.92em; }
+    .cat-header td { padding: 10px 12px; border: none; }
+    .radio-group { display: flex; justify-content: center; gap: 2px; }
+    .radio-group label { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: 0.15s; margin: 0; background: #f3f4f6; color: #555; border: 1.5px solid transparent; }
+    .radio-group input { display: none; }
+    .radio-group input:checked + label { background: #e94560; color: #fff; border-color: #e94560; transform: scale(1.05); }
+    .radio-group label:hover { background: #fce4e8; border-color: #e94560; }
+    .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1em; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: #16213e; color: #fff; }
+    .btn-primary:hover { background: #0f3460; transform: translateY(-1px); }
+    .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-success:hover { background: #047857; }
+    .btn-danger { background: #dc2626; color: #fff; }
+    .btn-danger:hover { background: #b91c1c; }
+    .btn-outline { background: transparent; color: #16213e; border: 2px solid #16213e; }
+    .btn-outline:hover { background: #16213e; color: #fff; }
+    .text-center { text-align: center; }
+    .mt-15 { margin-top: 15px; }
+    .flex-center { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .result-card { background: #f8fafc; border-radius: 10px; padding: 18px; border-left: 5px solid #16213e; }
+    .result-card.high { border-left-color: #059669; }
+    .result-card.medium { border-left-color: #f59e0b; }
+    .result-card.low { border-left-color: #dc2626; }
+    .result-card .score { font-size: 2em; font-weight: 800; color: #16213e; }
+    .result-card .score-label { font-size: 0.85em; color: #666; }
+    .result-card .desc { font-size: 0.88em; color: #444; margin-top: 6px; line-height: 1.5; }
+    .result-card .improve { font-size: 0.85em; color: #059669; margin-top: 6px; font-weight: 500; }
+    .admin-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+    .badge { background: #e94560; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 700; }
+    .table-wrap { overflow-x: auto; max-height: 400px; overflow-y: auto; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.75em; }
+    .data-table th { background: #16213e; color: #fff; padding: 8px 6px; position: sticky; top: 0; z-index: 2; white-space: nowrap; }
+    .data-table td { padding: 6px; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+    .data-table tr:nth-child(even) { background: #f9fafb; }
+    .data-table tr:hover { background: #fce4e8; }
+    .no-data { text-align: center; padding: 30px; color: #999; font-style: italic; }
+    .status-msg { padding: 12px; border-radius: 8px; margin-bottom: 15px; font-weight: 500; display: none; }
+    .status-msg.success { display: block; background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .status-msg.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .tab-bar { display: flex; gap: 4px; margin-bottom: 20px; background: #e5e7eb; border-radius: 10px; padding: 4px; }
+    .tab-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9em; }
+    .tab-btn.active { background: #16213e; color: #fff; }
+    .tab-btn:hover:not(.active) { background: #d1d5db; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .loading { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.6s linear infinite; margin-right: 6px; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 768px) {
+        .form-grid { grid-template-columns: 1fr; }
+        .result-grid { grid-template-columns: 1fr; }
+        .rating-table th:first-child { min-width: 150px; }
+        .radio-group label { width: 30px; height: 30px; font-size: 0.75em; }
+    }
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="th"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;<span class="s1">แบบประเมิน</span> Self-Directed Learning&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; margin: 0; padding: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body { font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif; background: #f0f4f8; color: #1a1a2e; padding: 20px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container { max-width: 1000px; margin: 0 auto; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1 { text-align: center; color: #16213e; margin-bottom: 5px; font-size: 1.8em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.subtitle { text-align: center; color: #555; margin-bottom: 30px; font-size: 0.95em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section { background: #fff; border-radius: 12px; padding: 25px 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section-title { font-size: 1.2em; font-weight: 700; color: #0f3460; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 3px solid #e94560; display: inline-block; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.form-group { margin-bottom: 12px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.form-group.full { grid-column: 1 / -1; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9em; color: #333; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label small { font-weight: 400; color: #777; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 0.95em; transition: 0.2s; font-family: inherit; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input:focus, select:focus, textarea:focus { outline: none; border-color: #e94560; box-shadow: 0 0 0 3px rgba(233,69,96,0.15); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table-wrap { overflow-x: auto; margin-bottom: 25px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table th { background: #16213e; color: #fff; padding: 10px 8px; text-align: center; font-weight: 600; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table th:first-child { text-align: left; min-width: 220px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table td { padding: 8px 6px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table tr:hover { background: #f8fafc; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table .q-text { font-size: 0.88em; line-height: 1.4; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.rating-table .q-text small { display: block; color: #888; font-style: italic; font-weight: 400; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cat-header { background: #e94560; color: #fff; font-weight: 700; font-size: 0.92em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cat-header td { padding: 10px 12px; border: none; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.radio-group { display: flex; justify-content: center; gap: 2px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.radio-group label { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: 0.15s; margin: 0; background: #f3f4f6; color: #555; border: 1.5px solid transparent; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.radio-group input { display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.radio-group input:checked + label { background: #e94560; color: #fff; border-color: #e94560; transform: scale(1.05); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.radio-group label:hover { background: #fce4e8; border-color: #e94560; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1em; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary { background: #16213e; color: #fff; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary:hover { background: #0f3460; transform: translateY(-1px); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-success { background: #059669; color: #fff; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-success:hover { background: #047857; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-danger { background: #dc2626; color: #fff; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-danger:hover { background: #b91c1c; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-outline { background: transparent; color: #16213e; border: 2px solid #16213e; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-outline:hover { background: #16213e; color: #fff; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.text-center { text-align: center; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.mt-15 { margin-top: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.flex-center { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card { background: #f8fafc; border-radius: 10px; padding: 18px; border-left: 5px solid #16213e; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card.high { border-left-color: #059669; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card.medium { border-left-color: #f59e0b; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card.low { border-left-color: #dc2626; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card .score { font-size: 2em; font-weight: 800; color: #16213e; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card .score-label { font-size: 0.85em; color: #666; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card .desc { font-size: 0.88em; color: #444; margin-top: 6px; line-height: 1.5; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-card .improve { font-size: 0.85em; color: #059669; margin-top: 6px; font-weight: 500; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.admin-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.badge { background: #e94560; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 700; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.table-wrap { overflow-x: auto; max-height: 400px; overflow-y: auto; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.data-table { width: 100%; border-collapse: collapse; font-size: 0.75em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.data-table th { background: #16213e; color: #fff; padding: 8px 6px; position: sticky; top: 0; z-index: 2; white-space: nowrap; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.data-table td { padding: 6px; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.data-table tr:nth-child(even) { background: #f9fafb; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.data-table tr:hover { background: #fce4e8; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.no-data { text-align: center; padding: 30px; color: #999; font-style: italic; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-msg { padding: 12px; border-radius: 8px; margin-bottom: 15px; font-weight: 500; display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-msg.success { display: block; background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.status-msg.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-bar { display: flex; gap: 4px; margin-bottom: 20px; background: #e5e7eb; border-radius: 10px; padding: 4px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-btn.active { background: #16213e; color: #fff; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-btn:hover:not(.active) { background: #d1d5db; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-content { display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tab-content.active { display: block; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.loading { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.6s linear infinite; margin-right: 6px; vertical-align: middle; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes spin { to { transform: rotate(360deg); } }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.form-grid { grid-template-columns: 1fr; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.result-grid { grid-template-columns: 1fr; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rating-table th:first-child { min-width: 150px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.radio-group label { width: 30px; height: 30px; font-size: 0.75em; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;h1&gt;</span><span class="s3">📋</span><span class="s2"> </span>แบบประเมิน<span class="s2"> Pre-test </span>ความรู้ความเข้าใจ<span class="s2">&lt;/h1&gt;</span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="subtitle"&gt;<span class="s1">เรื่อง</span> Self-Directed Learning (<span class="s1">การเรียนรู้ด้วยตนเอง</span>)&lt;/p&gt;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="tab-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab-btn active" onclick="switchTab('form')"&gt;<span class="s3">📝</span> <span class="s1">แบบประเมิน</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab-btn" onclick="switchTab('result')"&gt;<span class="s3">📊</span> <span class="s1">ผลลัพธ์</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="tab-btn" onclick="switchTab('admin')"&gt;<span class="s3">⚙️</span> Admin&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- TAB 1: FORM --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="tab-form" class="tab-content active"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-title"&gt;<span class="s3">📌</span> <span class="s1">ส่วนที่</span> 1 <span class="s1">ข้อมูลส่วนบุคคล</span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;1. <span class="s1">คำนำหน้า</span> / Prefix &lt;small&gt;(<span class="s1">ยศ</span>/<span class="s1">นาย</span>/<span class="s1">นาง</span>/<span class="s1">นางสาว</span>)&lt;/small&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="prefix" placeholder="<span class="s1">เช่น</span> <span class="s1">นาย</span>, <span class="s1">นาง</span>, <span class="s1">นางสาว</span>, <span class="s1">พ</span>.<span class="s1">ท</span>."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;2. <span class="s1">ชื่อ</span>-<span class="s1">สกุล</span> / Name-Lastname&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="fullname" placeholder="<span class="s1">กรุณากรอกชื่อและนามสกุล</span>"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;3. E-mail&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="email" id="email" placeholder="example@email.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;4. <span class="s1">สังกัด</span>/<span class="s1">หน่วยงาน</span> / Organization&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="organization" placeholder="<span class="s1">เช่น</span> <span class="s1">คณะศึกษาศาสตร์</span> <span class="s1">ม</span>.<span class="s1">รามคำแหง</span>"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;5. <span class="s1">อาชีพหรือสายงาน</span> / Occupation&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select id="occupation"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value=""&gt;— <span class="s1">กรุณาเลือก</span> —&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">อาจารย์</span>/Teacher"&gt;<span class="s1">อาจารย์</span> / Teacher&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">นักวิจัย</span>/Researcher"&gt;<span class="s1">นักวิจัย</span> / Researcher&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">นักวิชาการ</span>/Academic Expert"&gt;<span class="s1">นักวิชาการ</span> / Academic Expert&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">บุคลากรสายสนับสนุนวิชาการ</span>/Academic Support Personnel"&gt;<span class="s1">บุคลากรสายสนับสนุนวิชาการ</span> / Academic Support Personnel&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">เจ้าหน้าที่</span>/Officer"&gt;<span class="s1">เจ้าหน้าที่</span> / Officer&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">นักศึกษา</span>/Student"&gt;<span class="s1">นักศึกษา</span> / Student&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="<span class="s1">อื่นๆ</span>/Other"&gt;<span class="s1">อื่นๆ</span> / Other&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-group full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label&gt;6. <span class="s1">บทบาทหน้าที่ของท่านในงานด้านการศึกษา</span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" id="role" placeholder="<span class="s1">เช่น</span> <span class="s1">ผู้สอนรายวิชา</span>, <span class="s1">นิสิตฝึกสอน</span>, <span class="s1">ผู้ช่วยวิจัย</span>"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-title"&gt;<span class="s3">📌</span> <span class="s1">ส่วนที่</span> 2 <span class="s1">แบบประเมินความรู้ความเข้าใจ</span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="color:#666; font-size:0.88em; margin-bottom:15px;"&gt;<span class="s1">กรุณาเลือกระดับที่ตรงกับตัวท่านมากที่สุด</span>: &lt;strong&gt;5&lt;/strong&gt; = <span class="s1">มากที่สุด</span>, &lt;strong&gt;4&lt;/strong&gt; = <span class="s1">มาก</span>, &lt;strong&gt;3&lt;/strong&gt; = <span class="s1">ปานกลาง</span>, &lt;strong&gt;2&lt;/strong&gt; = <span class="s1">น้อย</span>, &lt;strong&gt;1&lt;/strong&gt; = <span class="s1">น้อยที่สุด</span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="rating-questions"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mt-15"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-primary" onclick="calculateResults()"&gt;<span class="s3">📊</span> <span class="s1">ดูผลลัพธ์</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- TAB 2: RESULTS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="tab-result" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-title"&gt;<span class="s3">📊</span> <span class="s1">ส่วนที่</span> 3 <span class="s1">ผลลัพธ์การประเมิน</span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="profile-summary" style="background:#f0f4f8; border-radius:8px; padding:12px 18px; margin-bottom:18px; font-size:0.92em; display:none;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="result-status-msg" class="status-msg"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="result-grid" class="result-grid"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mt-15"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-success" onclick="saveResult()" id="btn-save"&gt;<span class="s3">💾</span> <span class="s1">บันทึกผลลงฐานข้อมูล</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-outline" onclick="switchTab('form')"&gt;<span class="s4">←</span> <span class="s1">แก้ไขคำตอบ</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- TAB 3: ADMIN --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="tab-admin" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="section-title"&gt;<span class="s3">⚙️</span> <span class="s1">ส่วนที่</span> 4 <span class="s1">ระบบจัดการข้อมูล</span> (Admin)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="admin-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;<span class="s3">📁</span> <span class="s1">ข้อมูลทั้งหมดใน</span> Google Sheets &lt;span class="badge" id="data-count"&gt;0&lt;/span&gt; <span class="s1">รายการ</span>&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="btn btn-success" onclick="fetchAndExport()"&gt;<span class="s3">📥</span> <span class="s1">ดาวน์โหลด</span> CSV (<span class="s1">จาก</span> Server)&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="btn btn-outline" onclick="refreshAdmin()"&gt;<span class="s3">🔄</span> <span class="s1">โหลดข้อมูลล่าสุด</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="admin-status-msg" class="status-msg"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="table-wrap"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;table class="data-table" id="admin-table"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;<span class="s1">ลำดับ</span>&lt;/th&gt;&lt;th&gt;<span class="s1">วันที่</span>-<span class="s1">เวลา</span>&lt;/th&gt;&lt;th&gt;<span class="s1">คำนำหน้า</span>&lt;/th&gt;&lt;th&gt;<span class="s1">ชื่อ</span>-<span class="s1">สกุล</span>&lt;/th&gt;&lt;th&gt;E-mail&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;<span class="s1">สังกัด</span>&lt;/th&gt;&lt;th&gt;<span class="s1">อาชีพ</span>&lt;/th&gt;&lt;th&gt;<span class="s1">บทบาท</span>&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;LM1&lt;/th&gt;&lt;th&gt;LM2&lt;/th&gt;&lt;th&gt;LM3&lt;/th&gt;&lt;th&gt;LM4&lt;/th&gt;&lt;th&gt;LM5&lt;/th&gt;&lt;th&gt;LM6&lt;/th&gt;&lt;th&gt;<span class="s1">ค่าเฉลี่ย</span> LM&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;PI1&lt;/th&gt;&lt;th&gt;PI2&lt;/th&gt;&lt;th&gt;PI3&lt;/th&gt;&lt;th&gt;PI4&lt;/th&gt;&lt;th&gt;PI5&lt;/th&gt;&lt;th&gt;PI6&lt;/th&gt;&lt;th&gt;<span class="s1">ค่าเฉลี่ย</span> PI&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;SM1&lt;/th&gt;&lt;th&gt;SM2&lt;/th&gt;&lt;th&gt;SM3&lt;/th&gt;&lt;th&gt;SM4&lt;/th&gt;&lt;th&gt;<span class="s1">ค่าเฉลี่ย</span> SM&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;IC1&lt;/th&gt;&lt;th&gt;IC2&lt;/th&gt;&lt;th&gt;IC3&lt;/th&gt;&lt;th&gt;IC4&lt;/th&gt;&lt;th&gt;<span class="s1">ค่าเฉลี่ย</span> IC&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tbody id="admin-tbody"&gt;&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="no-data-msg" class="no-data"&gt;<span class="s1">กำลังโหลดข้อมูล</span>...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p3"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">// <span class="s3">🔥</span> <span class="s1">สำคัญมาก</span>: <span class="s1">เปลี่ยน</span> URL <span class="s1">นี้เป็น</span> URL <span class="s1">ที่ได้จากการ</span> Deploy Apps Script</p>
-<p class="p4"><span class="s5">const APPS_SCRIPT_URL = '</span><span class="s6">https://script.google.com/macros/s/AKfycbzghmsv1YJ07T-ejTEmI73Z0svyx71UYjIFrsGGt-JA7RiHCsSpj4SH62X6kC1oQ7T_/exec</span><span class="s7"> </span><span class="s5">';</span></p>
-<p class="p3"><br></p>
-<p class="p1">const categories = [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ id: 'LM', name: '1. <span class="s1">แรงจูงใจในการเรียนรู้</span>', full: 'Learning Motivation (LM)', color: '#0f3460',</p>
-<p class="p1"><span class="Apple-converted-space">      </span>items: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันรู้ว่าตนเองต้องเรียนรู้อะไร</span> / I know what I need to learn.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ไม่ว่าการเรียนรู้จะได้ผลมากน้อยแค่ไหน</span> <span class="s1">ฉันก็ยังชอบเรียนรู้</span> / Regardless of the results or effectiveness of my learning, I still like learning.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันมีความตั้งใจที่จะพัฒนาตนเองและเรียนให้ดียิ่งขึ้นอย่างต่อเนื่อง</span> / I strongly hope to constantly improve and excel in my learning.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ทั้งความสำเร็จและความล้มเหลวเป็นแรงผลักดันให้ฉันเรียนรู้ต่อไป</span> / My successes and failures inspire me to continue learning.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสนุกกับการค้นหาคำตอบของคำถามต่าง</span> <span class="s1">ๆ</span> / I enjoy finding answers to questions.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันไม่ยอมเลิกเรียนรู้</span> <span class="s1">แม้จะพบกับอุปสรรคหรือความยากลำบาก</span> / I will not give up learning because I face some difficulties.'</p>
-<p class="p1"><span class="Apple-converted-space">      </span>]},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ id: 'PI', name: '2. <span class="s1">การวางแผนและการลงมือปฏิบัติ</span>', full: 'Planning and Implementing (PI)', color: '#059669',</p>
-<p class="p1"><span class="Apple-converted-space">      </span>items: [</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">        </span>'</span>ฉันสามารถกำหนดเป้าหมายการเรียนรู้ของตนเองได้โดยริเริ่มด้วยตนเอง<span class="s2"> / I can pro-actively establish my learning goals.',</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันรู้ว่ากลยุทธ์การเรียนรู้แบบใดเหมาะสมกับตนเองในการบรรลุเป้าหมายการเรียนรู้</span> / I know what learning strategies are appropriate for me in reaching my learning goals.',</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">        </span>'</span>ฉันสามารถจัดลำดับความสำคัญของสิ่งที่ต้องเรียนรู้ได้<span class="s2"> / I set the priorities of my learning.',</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ไม่ว่าจะเป็นการเรียนในชั้นเรียน</span> <span class="s1">การฝึกปฏิบัติ</span> <span class="s1">หรือการเรียนด้วยตนเอง</span> <span class="s1">ฉันสามารถเรียนตามแผนที่วางไว้ได้</span> / Whether in the clinical practicum, classroom or on my own, I am able to follow my own plan of learning.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสามารถจัดสรรและควบคุมเวลาในการเรียนของตนเองได้ดี</span> / I am good at arranging and controlling my learning time.',</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">        </span>'</span>ฉันรู้จักแหล่งข้อมูลและสามารถค้นหาทรัพยากรเพื่อการเรียนรู้ได้<span class="s2"> / I know how to find resources for my learning.'</span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>]},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ id: 'SM', name: '3. <span class="s1">การกำกับและติดตามการเรียนรู้ของตนเอง</span>', full: 'Self-Monitoring (SM)', color: '#f59e0b',</p>
-<p class="p1"><span class="Apple-converted-space">      </span>items: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสามารถนำความรู้ใหม่มาเชื่อมโยงกับประสบการณ์เดิมของตนเองได้</span> / I can connect new knowledge with my own personal experiences.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันเข้าใจจุดแข็งและจุดอ่อน</span>/<span class="s1">ข้อจำกัดของการเรียนรู้ของตนเอง</span> / I understand the strengths and weakness of my learning.',</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">        </span>'</span>ฉันสามารถติดตามความก้าวหน้าในการเรียนรู้ของตนเองได้<span class="s2"> / I can monitor my learning progress.',</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสามารถประเมินผลลัพธ์การเรียนรู้ของตนเองได้</span> / I can evaluate on my own my learning outcomes.'</p>
-<p class="p1"><span class="Apple-converted-space">      </span>]},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ id: 'IC', name: '4. <span class="s1">การสื่อสารระหว่างบุคคล</span>', full: 'Interpersonal Communication (IC)', color: '#8b5cf6',</p>
-<p class="p1"><span class="Apple-converted-space">      </span>items: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">การมีปฏิสัมพันธ์กับผู้อื่นช่วยให้ฉันวางแผนการเรียนรู้ในอนาคตได้ดีขึ้น</span> / My interaction with others helps me plan for further learning.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันมีความสนใจที่จะเรียนรู้ภาษาและวัฒนธรรมของผู้ที่ต้องสื่อสารและทำงานร่วมกันด้วยเป็นประจำ</span> / I would like to learn the language and culture of those whom I frequently interact with.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสามารถพูดนำเสนอให้คนอื่นเข้าใจได้ดี</span> / I am able to express messages effectively in oral presentations.',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'<span class="s1">ฉันสามารถเขียนสื่อสารได้ดี</span> / I am able to communicate messages effectively in writing.'</p>
-<p class="p1"><span class="Apple-converted-space">      </span>]}</p>
-<p class="p1">];</p>
-<p class="p3"><br></p>
-<p class="p1">let cachedData = [];</p>
-<p class="p3"><br></p>
-<p class="p1">function renderQuestions() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let html = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>categories.forEach(cat =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;table class="rating-table" style="margin-bottom:20px;"&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;tr class="cat-header"&gt;&lt;td colspan="6"&gt;${cat.name} — ${cat.full}&lt;/td&gt;&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;tr&gt;&lt;th style="width:40%;"&gt;<span class="s1">ข้อความ</span> / Statement&lt;/th&gt;&lt;th style="width:12%;"&gt;5&lt;br&gt;<span class="s1">มากที่สุด</span>&lt;/th&gt;&lt;th style="width:12%;"&gt;4&lt;br&gt;<span class="s1">มาก</span>&lt;/th&gt;&lt;th style="width:12%;"&gt;3&lt;br&gt;<span class="s1">ปานกลาง</span>&lt;/th&gt;&lt;th style="width:12%;"&gt;2&lt;br&gt;<span class="s1">น้อย</span>&lt;/th&gt;&lt;th style="width:12%;"&gt;1&lt;br&gt;<span class="s1">น้อยที่สุด</span>&lt;/th&gt;&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>cat.items.forEach((q, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const name = `${cat.id}_q${i}`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>html += `&lt;tr&gt;&lt;td class="q-text"&gt;${q}&lt;/td&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>for (let v = 5; v &gt;= 1; v--) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>html += `&lt;td&gt;&lt;div class="radio-group"&gt;&lt;input type="radio" name="${name}" id="${name}_${v}" value="${v}"&gt;&lt;label for="${name}_${v}"&gt;${v}&lt;/label&gt;&lt;/div&gt;&lt;/td&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>html += `&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;/table&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('rating-questions').innerHTML = html;</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function getScores() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const result = {};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>categories.forEach(cat =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const vals = [];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>cat.items.forEach((_, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const radios = document.querySelectorAll(`input[name="${cat.id}_q${i}"]`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let selected = null;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>radios.forEach(r =&gt; { if (r.checked) selected = parseInt(r.value); });</p>
-<p class="p1"><span class="Apple-converted-space">            </span>vals.push(selected);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>result[cat.id] = vals;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return result;</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function validateAll() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const ids = ['prefix','fullname','email','organization','role'];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (let id of ids) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!document.getElementById(id).value.trim()) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>showStatus('result-status-msg', '<span class="s1">กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน</span>', 'error');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return false;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!document.getElementById('occupation').value) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('result-status-msg', '<span class="s1">กรุณาเลือกอาชีพ</span>/<span class="s1">สายงาน</span>', 'error');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return false;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const scores = getScores();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (let catId in scores) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let v of scores[catId]) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (v === null) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>showStatus('result-status-msg', `<span class="s1">กรุณาตอบคำถามทุกข้อในหมวด</span> ${catId} <span class="s1">ให้ครบถ้วน</span>`, 'error');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return false;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return true;</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function interpretDesc(catId, avg) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const descs = {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>LM: {</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>high: { desc: '</span>คุณเป็นผู้ที่มีแรงจูงใจภายในสูงมาก<span class="s2"> </span>รักการเรียนรู้อย่างแท้จริง<span class="s2"> </span>ไม่ว่าจะได้ผลลัพธ์อย่างไรก็ยังสนุกกับการค้นหาความรู้<span class="s2"> </span>และไม่ย่อท้อต่ออุปสรรค<span class="s2">', improve: '</span>รักษาแรงจูงใจนี้ด้วยการตั้งเป้าหมายที่ท้าทายขึ้น<span class="s2"> </span>และแบ่งปันแรงบันดาลใจให้ผู้อื่น<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>mid: { desc: '</span>คุณมีแรงจูงใจในการเรียนรู้ระดับปานกลาง<span class="s2"> </span>บางครั้งอาจต้องการแรงกระตุ้นเพิ่มเติม<span class="s2">', improve: '</span>ลองสร้างเป้าหมายการเรียนรู้ที่ชัดเจนและให้รางวัลตัวเองเมื่อบรรลุเป้าหมาย<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>low: { desc: '</span>คุณอาจขาดความกระตือรือร้นในการเรียนรู้<span class="s2"> </span>ควรหาแรงบันดาลใจและเหตุผลที่แท้จริง<span class="s2">', improve: '</span>เริ่มจากหัวข้อที่ชอบจริง<span class="s2"> </span>ๆ<span class="s2"> </span>และหาเพื่อนร่วมเรียนรู้<span class="s2">' }</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>PI: {</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>high: { desc: '</span>คุณเป็นผู้วางแผนการเรียนรู้ได้ยอดเยี่ยม<span class="s2"> </span>รู้จักตั้งเป้าหมาย<span class="s2"> </span>จัดลำดับความสำคัญ<span class="s2"> </span>บริหารเวลา<span class="s2"> </span>และหาแหล่งเรียนรู้<span class="s2">', improve: '</span>ลองเพิ่มความยืดหยุ่นให้แผน<span class="s2"> </span>และใช้เครื่องมือดิจิทัลช่วยจัดการ<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>mid: { desc: '</span>คุณมีการวางแผนระดับปานกลาง<span class="s2"> </span>แต่ยังต้องปรับปรุงการจัดลำดับความสำคัญและการควบคุมเวลา<span class="s2">', improve: '</span>ลองใช้<span class="s2"> Eisenhower Matrix </span>จัดลำดับงาน<span class="s2"> </span>และใช้ปฏิทินวางแผนล่วงหน้า<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>low: { desc: '</span>คุณควรพัฒนาทักษะการวางแผนและการจัดการตนเอง<span class="s2">', improve: '</span>เริ่มจากเป้าหมายเล็ก<span class="s2"> </span>ๆ<span class="s2"> </span>ที่ทำได้จริง<span class="s2"> </span>และค่อย<span class="s2"> </span>ๆ<span class="s2"> </span>เพิ่มความซับซ้อน<span class="s2">' }</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>SM: {</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>high: { desc: '</span>คุณมีความตระหนักรู้ในตนเองสูง<span class="s2"> </span>เชื่อมโยงความรู้ใหม่กับประสบการณ์เดิม<span class="s2"> </span>เข้าใจจุดแข็งจุดอ่อน<span class="s2"> </span>และติดตามความก้าวหน้าได้ดี<span class="s2">', improve: '</span>ลองทำ<span class="s2"> Reflective Journal </span>และขอ<span class="s2"> Feedback </span>จากผู้อื่น<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>mid: { desc: '</span>คุณกำกับติดตามตนเองได้ปานกลาง<span class="s2"> </span>ควรฝึกการสะท้อนคิดและประเมินตนเองสม่ำเสมอ<span class="s2">', improve: '</span>ลองตั้งเวลาทบทวนตนเองทุกสัปดาห์<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>low: { desc: '</span>คุณควรพัฒนาทักษะการติดตามและประเมินตนเอง<span class="s2">', improve: '</span>เริ่มจากจดบันทึกการเรียนรู้ประจำวัน<span class="s2">' }</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>IC: {</p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>high: { desc: '</span>คุณมีทักษะการสื่อสารระหว่างบุคคลที่ดีเยี่ยม<span class="s2"> </span>นำเสนอ<span class="s2"> </span>พูด<span class="s2"> </span>และเขียนสื่อสารได้อย่างมีประสิทธิภาพ<span class="s2">', improve: '</span>ลองขยายเครือข่ายข้ามวัฒนธรรมหรือข้ามสาขา<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>mid: { desc: '</span>คุณมีทักษะการสื่อสารระดับปานกลาง<span class="s2"> </span>ควรฝึกเพิ่มเติมทั้งพูดและเขียน<span class="s2">', improve: '</span>ลองฝึกนำเสนอในที่ประชุมเล็ก<span class="s2"> </span>ๆ<span class="s2"> </span>และเขียนบันทึกสั้น<span class="s2"> </span>ๆ<span class="s2"> </span>ประจำ<span class="s2">' },</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">            </span>low: { desc: '</span>คุณควรพัฒนาทักษะการสื่อสารระหว่างบุคคล<span class="s2">', improve: '</span>เริ่มจากฝึกนำเสนอหน้ากระจกและเขียนสรุปสิ่งที่เรียนรู้<span class="s2">' }</span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (avg &gt;= 4.0) return descs[catId].high;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (avg &gt;= 2.5) return descs[catId].mid;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return descs[catId].low;</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function calculateResults() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('result-status-msg').className = 'status-msg';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('result-status-msg').style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!validateAll()) return;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const scores = getScores();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const prefix = document.getElementById('prefix').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const fullname = document.getElementById('fullname').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('profile-summary').style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('profile-summary').innerHTML = `<span class="s3">👤</span> &lt;strong&gt;${prefix}${fullname}&lt;/strong&gt; | &lt;strong&gt;<span class="s1">อาชีพ</span>:&lt;/strong&gt; ${document.getElementById('occupation').value}`;</p>
-<p class="p3"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let html = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>categories.forEach(cat =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const vals = scores[cat.id];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const avg = vals.reduce((a,b) =&gt; a+b, 0) / vals.length;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const avgFixed = avg.toFixed(2);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const interp = interpretDesc(cat.id, avg);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let levelClass = avg &gt;= 4.0 ? 'high' : (avg &lt;= 2.4 ? 'low' : 'medium');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;div class="result-card ${levelClass}" style="border-left-color:${cat.color};"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="display:flex; justify-content:space-between; align-items:center;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-weight:700; font-size:0.95em;"&gt;${cat.name}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;&lt;span class="score"&gt;${avgFixed}&lt;/span&gt; &lt;span class="score-label"&gt;/ 5&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="desc"&gt;${interp.desc}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="improve"&gt;<span class="s3">💡</span> ${interp.improve}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('result-grid').innerHTML = html;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>switchTab('result');</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function saveResult() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const btn = document.getElementById('btn-save');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>btn.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>btn.innerHTML = '&lt;span class="loading"&gt;&lt;/span&gt; <span class="s1">กำลังบันทึก</span>...';</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const scores = getScores();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const prefix = document.getElementById('prefix').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const fullname = document.getElementById('fullname').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const email = document.getElementById('email').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const org = document.getElementById('organization').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const occ = document.getElementById('occupation').value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const role = document.getElementById('role').value.trim();</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!prefix||!fullname||!email||!org||!occ||!role) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('result-status-msg','<span class="s1">กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน</span>','error');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>btn.disabled = false; btn.innerHTML = '<span class="s3">💾</span> <span class="s1">บันทึกผลลงฐานข้อมูล</span>';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (let catId in scores) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let v of scores[catId]) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (v === null) {<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>showStatus('result-status-msg','<span class="s1">กรุณาตอบทุกข้อก่อนบันทึก</span>','error');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>btn.disabled = false; btn.innerHTML = '<span class="s3">💾</span> <span class="s1">บันทึกผลลงฐานข้อมูล</span>';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const thaiTime = now.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const payload = {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>timestamp: thaiTime,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>prefix, fullname, email, org, occ, role,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>scores: JSON.parse(JSON.stringify(scores))</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>fetch(APPS_SCRIPT_URL, {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('result-status-msg',`<span class="s3">✅</span> <span class="s1">บันทึกข้อมูลของ</span> ${prefix}${fullname} <span class="s1">สำเร็จ</span>! (${thaiTime})`,'success');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>btn.disabled = false; btn.innerHTML = '<span class="s3">💾</span> <span class="s1">บันทึกผลลงฐานข้อมูล</span>';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.catch((err) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('result-status-msg',`<span class="s3">❌</span> <span class="s1">เกิดข้อผิดพลาด</span>: ${err.message}`,'error');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>btn.disabled = false; btn.innerHTML = '<span class="s3">💾</span> <span class="s1">บันทึกผลลงฐานข้อมูล</span>';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function refreshAdmin() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('no-data-msg').textContent = '<span class="s1">กำลังโหลดข้อมูล</span>...';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('no-data-msg').style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('admin-tbody').innerHTML = '';</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>fetch(APPS_SCRIPT_URL + '?t=' + Date.now())</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(res =&gt; res.json())</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(data =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (data.success) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cachedData = data.data;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderAdminTable(data.data);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>showStatus('admin-status-msg','<span class="s3">❌</span> <span class="s1">โหลดข้อมูลไม่สำเร็จ</span>: '+data.message,'error');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('no-data-msg').textContent = '<span class="s1">ไม่สามารถโหลดข้อมูลได้</span>';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.catch(err =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('admin-status-msg','<span class="s3">❌</span> <span class="s1">ไม่สามารถเชื่อมต่อ</span> Server: '+err.message,'error');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('no-data-msg').textContent = '<span class="s1">เชื่อมต่อ</span> Server <span class="s1">ไม่ได้</span>';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function renderAdminTable(rows) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const tbody = document.getElementById('admin-tbody');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const noMsg = document.getElementById('no-data-msg');</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!rows || rows.length === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tbody.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>noMsg.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>noMsg.textContent = '<span class="s1">ยังไม่มีข้อมูลในฐานข้อมูล</span>';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('data-count').textContent = '0';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('data-count').textContent = rows.length;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>noMsg.style.display = 'none';</p>
-<p class="p3"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let html = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>rows.forEach((r, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>html += `&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${i+1}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['Timestamp']||r['<span class="s1">วันที่</span>-<span class="s1">เวลา</span>']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['<span class="s1">คำนำหน้า</span>']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['<span class="s1">ชื่อ</span>-<span class="s1">สกุล</span>']||r['Name-Lastname']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['E-mail']||r['Email']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['<span class="s1">สังกัด</span>/<span class="s1">หน่วยงาน</span>']||r['Organization']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['<span class="s1">อาชีพ</span>']||r['Occupation']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['<span class="s1">บทบาทหน้าที่</span>']||r['Role']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['LM1']||''}&lt;/td&gt;&lt;td&gt;${r['LM2']||''}&lt;/td&gt;&lt;td&gt;${r['LM3']||''}&lt;/td&gt;&lt;td&gt;${r['LM4']||''}&lt;/td&gt;&lt;td&gt;${r['LM5']||''}&lt;/td&gt;&lt;td&gt;${r['LM6']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;strong&gt;${r['Avg_LM']||r['<span class="s1">ค่าเฉลี่ย</span> LM']||''}&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['PI1']||''}&lt;/td&gt;&lt;td&gt;${r['PI2']||''}&lt;/td&gt;&lt;td&gt;${r['PI3']||''}&lt;/td&gt;&lt;td&gt;${r['PI4']||''}&lt;/td&gt;&lt;td&gt;${r['PI5']||''}&lt;/td&gt;&lt;td&gt;${r['PI6']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;strong&gt;${r['Avg_PI']||r['<span class="s1">ค่าเฉลี่ย</span> PI']||''}&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['SM1']||''}&lt;/td&gt;&lt;td&gt;${r['SM2']||''}&lt;/td&gt;&lt;td&gt;${r['SM3']||''}&lt;/td&gt;&lt;td&gt;${r['SM4']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;strong&gt;${r['Avg_SM']||r['<span class="s1">ค่าเฉลี่ย</span> SM']||''}&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;${r['IC1']||''}&lt;/td&gt;&lt;td&gt;${r['IC2']||''}&lt;/td&gt;&lt;td&gt;${r['IC3']||''}&lt;/td&gt;&lt;td&gt;${r['IC4']||''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;strong&gt;${r['Avg_IC']||r['<span class="s1">ค่าเฉลี่ย</span> IC']||''}&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>tbody.innerHTML = html;</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function fetchAndExport() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>fetch(APPS_SCRIPT_URL + '?t=' + Date.now())</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(res =&gt; res.json())</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(data =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (data.success &amp;&amp; data.csv) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const blob = new Blob([data.csv], {type: 'text/csv;charset=utf-8;'});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const link = document.createElement('a');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>link.href = URL.createObjectURL(blob);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>link.download = `SDL_Pretest_Data_${new Date().toISOString().slice(0,10)}.csv`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>link.click();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>URL.revokeObjectURL(link.href);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>showStatus('admin-status-msg',`<span class="s3">✅</span> <span class="s1">ดาวน์โหลด</span> CSV <span class="s1">สำเร็จ</span> — ${data.data.length} <span class="s1">รายการ</span>`,'success');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>showStatus('admin-status-msg', '<span class="s3">❌</span> <span class="s1">ไม่มีข้อมูลให้ดาวน์โหลด</span>','error');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.catch(err =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showStatus('admin-status-msg', '<span class="s3">❌</span> <span class="s1">เกิดข้อผิดพลาด</span>: '+err.message,'error');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function showStatus(id, msg, type) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const el = document.getElementById(id);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>el.className = 'status-msg '+type;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>el.textContent = msg;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>el.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; { el.style.display = 'none'; }, 5000);</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">function switchTab(tab) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.tab-content, .tab-btn').forEach(el =&gt; el.classList.remove('active'));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('tab-' + tab).classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.querySelector(`.tab-btn[onclick*="'${tab}'"]`).classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (tab === 'admin') refreshAdmin();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (tab === 'form' || tab === 'result') {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('result-status-msg').className = 'status-msg';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('result-status-msg').style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1">}</p>
-<p class="p3"><br></p>
-<p class="p1">renderQuestions();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<div class="container">
+    <h1>📋 แบบประเมิน Pre-test ความรู้ความเข้าใจ</h1>
+    <p class="subtitle">เรื่อง Self-Directed Learning (การเรียนรู้ด้วยตนเอง)</p>
+
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('form')">📝 แบบประเมิน</button>
+        <button class="tab-btn" onclick="switchTab('result')">📊 ผลลัพธ์</button>
+        <button class="tab-btn" onclick="switchTab('admin')">⚙️ Admin</button>
+    </div>
+
+    <!-- TAB 1: FORM -->
+    <div id="tab-form" class="tab-content active">
+        <div class="section">
+            <div class="section-title">📌 ส่วนที่ 1 ข้อมูลส่วนบุคคล</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>1. คำนำหน้า / Prefix <small>(ยศ/นาย/นาง/นางสาว)</small></label>
+                    <input type="text" id="prefix" placeholder="เช่น นาย, นาง, นางสาว, พ.ท.">
+                </div>
+                <div class="form-group">
+                    <label>2. ชื่อ-สกุล / Name-Lastname</label>
+                    <input type="text" id="fullname" placeholder="กรุณากรอกชื่อและนามสกุล">
+                </div>
+                <div class="form-group">
+                    <label>3. E-mail</label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>4. สังกัด/หน่วยงาน / Organization</label>
+                    <input type="text" id="organization" placeholder="เช่น คณะศึกษาศาสตร์ ม.รามคำแหง">
+                </div>
+                <div class="form-group">
+                    <label>5. อาชีพหรือสายงาน / Occupation</label>
+                    <select id="occupation">
+                        <option value="">— กรุณาเลือก —</option>
+                        <option value="อาจารย์/Teacher">อาจารย์ / Teacher</option>
+                        <option value="นักวิจัย/Researcher">นักวิจัย / Researcher</option>
+                        <option value="นักวิชาการ/Academic Expert">นักวิชาการ / Academic Expert</option>
+                        <option value="บุคลากรสายสนับสนุนวิชาการ/Academic Support Personnel">บุคลากรสายสนับสนุนวิชาการ / Academic Support Personnel</option>
+                        <option value="เจ้าหน้าที่/Officer">เจ้าหน้าที่ / Officer</option>
+                        <option value="นักศึกษา/Student">นักศึกษา / Student</option>
+                        <option value="อื่นๆ/Other">อื่นๆ / Other</option>
+                    </select>
+                </div>
+                <div class="form-group full">
+                    <label>6. บทบาทหน้าที่ของท่านในงานด้านการศึกษา</label>
+                    <input type="text" id="role" placeholder="เช่น ผู้สอนรายวิชา, นิสิตฝึกสอน, ผู้ช่วยวิจัย">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌 ส่วนที่ 2 แบบประเมินความรู้ความเข้าใจ</div>
+            <p style="color:#666; font-size:0.88em; margin-bottom:15px;">กรุณาเลือกระดับที่ตรงกับตัวท่านมากที่สุด: <strong>5</strong> = มากที่สุด, <strong>4</strong> = มาก, <strong>3</strong> = ปานกลาง, <strong>2</strong> = น้อย, <strong>1</strong> = น้อยที่สุด</p>
+            <div id="rating-questions"></div>
+            <div class="text-center mt-15">
+                <button class="btn btn-primary" onclick="calculateResults()">📊 ดูผลลัพธ์</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: RESULTS -->
+    <div id="tab-result" class="tab-content">
+        <div class="section">
+            <div class="section-title">📊 ส่วนที่ 3 ผลลัพธ์การประเมิน</div>
+            <div id="profile-summary" style="background:#f0f4f8; border-radius:8px; padding:12px 18px; margin-bottom:18px; font-size:0.92em; display:none;"></div>
+            <div id="result-status-msg" class="status-msg"></div>
+            <div id="result-grid" class="result-grid"></div>
+            <div class="text-center mt-15">
+                <button class="btn btn-success" onclick="saveResult()" id="btn-save">💾 บันทึกผลลงฐานข้อมูล</button>
+                <button class="btn btn-outline" onclick="switchTab('form')">← แก้ไขคำตอบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: ADMIN -->
+    <div id="tab-admin" class="tab-content">
+        <div class="section">
+            <div class="section-title">⚙️ ส่วนที่ 4 ระบบจัดการข้อมูล (Admin)</div>
+            <div class="admin-controls">
+                <span>📁 ข้อมูลทั้งหมดใน Google Sheets <span class="badge" id="data-count">0</span> รายการ</span>
+                <div>
+                    <button class="btn btn-success" onclick="fetchAndExport()">📥 ดาวน์โหลด CSV (จาก Server)</button>
+                    <button class="btn btn-outline" onclick="refreshAdmin()">🔄 โหลดข้อมูลล่าสุด</button>
+                </div>
+            </div>
+            <div id="admin-status-msg" class="status-msg"></div>
+            <div class="table-wrap">
+                <table class="data-table" id="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th><th>วันที่-เวลา</th><th>คำนำหน้า</th><th>ชื่อ-สกุล</th><th>E-mail</th>
+                            <th>สังกัด</th><th>อาชีพ</th><th>บทบาท</th>
+                            <th>LM1</th><th>LM2</th><th>LM3</th><th>LM4</th><th>LM5</th><th>LM6</th><th>ค่าเฉลี่ย LM</th>
+                            <th>PI1</th><th>PI2</th><th>PI3</th><th>PI4</th><th>PI5</th><th>PI6</th><th>ค่าเฉลี่ย PI</th>
+                            <th>SM1</th><th>SM2</th><th>SM3</th><th>SM4</th><th>ค่าเฉลี่ย SM</th>
+                            <th>IC1</th><th>IC2</th><th>IC3</th><th>IC4</th><th>ค่าเฉลี่ย IC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-tbody"></tbody>
+                </table>
+                <div id="no-data-msg" class="no-data">กำลังโหลดข้อมูล...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 🔥 สำคัญมาก: เปลี่ยน URL นี้เป็น URL ที่ได้จากการ Deploy Apps Script
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzghmsv1YJ07T-ejTEmI73Z0svyx71UYjIFrsGGt-JA7RiHCsSpj4SH62X6kC1oQ7T_/exec ';
+
+const categories = [
+    { id: 'LM', name: '1. แรงจูงใจในการเรียนรู้', full: 'Learning Motivation (LM)', color: '#0f3460',
+      items: [
+        'ฉันรู้ว่าตนเองต้องเรียนรู้อะไร / I know what I need to learn.',
+        'ไม่ว่าการเรียนรู้จะได้ผลมากน้อยแค่ไหน ฉันก็ยังชอบเรียนรู้ / Regardless of the results or effectiveness of my learning, I still like learning.',
+        'ฉันมีความตั้งใจที่จะพัฒนาตนเองและเรียนให้ดียิ่งขึ้นอย่างต่อเนื่อง / I strongly hope to constantly improve and excel in my learning.',
+        'ทั้งความสำเร็จและความล้มเหลวเป็นแรงผลักดันให้ฉันเรียนรู้ต่อไป / My successes and failures inspire me to continue learning.',
+        'ฉันสนุกกับการค้นหาคำตอบของคำถามต่าง ๆ / I enjoy finding answers to questions.',
+        'ฉันไม่ยอมเลิกเรียนรู้ แม้จะพบกับอุปสรรคหรือความยากลำบาก / I will not give up learning because I face some difficulties.'
+      ]},
+    { id: 'PI', name: '2. การวางแผนและการลงมือปฏิบัติ', full: 'Planning and Implementing (PI)', color: '#059669',
+      items: [
+        'ฉันสามารถกำหนดเป้าหมายการเรียนรู้ของตนเองได้โดยริเริ่มด้วยตนเอง / I can pro-actively establish my learning goals.',
+        'ฉันรู้ว่ากลยุทธ์การเรียนรู้แบบใดเหมาะสมกับตนเองในการบรรลุเป้าหมายการเรียนรู้ / I know what learning strategies are appropriate for me in reaching my learning goals.',
+        'ฉันสามารถจัดลำดับความสำคัญของสิ่งที่ต้องเรียนรู้ได้ / I set the priorities of my learning.',
+        'ไม่ว่าจะเป็นการเรียนในชั้นเรียน การฝึกปฏิบัติ หรือการเรียนด้วยตนเอง ฉันสามารถเรียนตามแผนที่วางไว้ได้ / Whether in the clinical practicum, classroom or on my own, I am able to follow my own plan of learning.',
+        'ฉันสามารถจัดสรรและควบคุมเวลาในการเรียนของตนเองได้ดี / I am good at arranging and controlling my learning time.',
+        'ฉันรู้จักแหล่งข้อมูลและสามารถค้นหาทรัพยากรเพื่อการเรียนรู้ได้ / I know how to find resources for my learning.'
+      ]},
+    { id: 'SM', name: '3. การกำกับและติดตามการเรียนรู้ของตนเอง', full: 'Self-Monitoring (SM)', color: '#f59e0b',
+      items: [
+        'ฉันสามารถนำความรู้ใหม่มาเชื่อมโยงกับประสบการณ์เดิมของตนเองได้ / I can connect new knowledge with my own personal experiences.',
+        'ฉันเข้าใจจุดแข็งและจุดอ่อน/ข้อจำกัดของการเรียนรู้ของตนเอง / I understand the strengths and weakness of my learning.',
+        'ฉันสามารถติดตามความก้าวหน้าในการเรียนรู้ของตนเองได้ / I can monitor my learning progress.',
+        'ฉันสามารถประเมินผลลัพธ์การเรียนรู้ของตนเองได้ / I can evaluate on my own my learning outcomes.'
+      ]},
+    { id: 'IC', name: '4. การสื่อสารระหว่างบุคคล', full: 'Interpersonal Communication (IC)', color: '#8b5cf6',
+      items: [
+        'การมีปฏิสัมพันธ์กับผู้อื่นช่วยให้ฉันวางแผนการเรียนรู้ในอนาคตได้ดีขึ้น / My interaction with others helps me plan for further learning.',
+        'ฉันมีความสนใจที่จะเรียนรู้ภาษาและวัฒนธรรมของผู้ที่ต้องสื่อสารและทำงานร่วมกันด้วยเป็นประจำ / I would like to learn the language and culture of those whom I frequently interact with.',
+        'ฉันสามารถพูดนำเสนอให้คนอื่นเข้าใจได้ดี / I am able to express messages effectively in oral presentations.',
+        'ฉันสามารถเขียนสื่อสารได้ดี / I am able to communicate messages effectively in writing.'
+      ]}
+];
+
+let cachedData = [];
+
+function renderQuestions() {
+    let html = '';
+    categories.forEach(cat => {
+        html += `<table class="rating-table" style="margin-bottom:20px;">`;
+        html += `<tr class="cat-header"><td colspan="6">${cat.name} — ${cat.full}</td></tr>`;
+        html += `<tr><th style="width:40%;">ข้อความ / Statement</th><th style="width:12%;">5<br>มากที่สุด</th><th style="width:12%;">4<br>มาก</th><th style="width:12%;">3<br>ปานกลาง</th><th style="width:12%;">2<br>น้อย</th><th style="width:12%;">1<br>น้อยที่สุด</th></tr>`;
+        cat.items.forEach((q, i) => {
+            const name = `${cat.id}_q${i}`;
+            html += `<tr><td class="q-text">${q}</td>`;
+            for (let v = 5; v >= 1; v--) {
+                html += `<td><div class="radio-group"><input type="radio" name="${name}" id="${name}_${v}" value="${v}"><label for="${name}_${v}">${v}</label></div></td>`;
+            }
+            html += `</tr>`;
+        });
+        html += `</table>`;
+    });
+    document.getElementById('rating-questions').innerHTML = html;
+}
+
+function getScores() {
+    const result = {};
+    categories.forEach(cat => {
+        const vals = [];
+        cat.items.forEach((_, i) => {
+            const radios = document.querySelectorAll(`input[name="${cat.id}_q${i}"]`);
+            let selected = null;
+            radios.forEach(r => { if (r.checked) selected = parseInt(r.value); });
+            vals.push(selected);
+        });
+        result[cat.id] = vals;
+    });
+    return result;
+}
+
+function validateAll() {
+    const ids = ['prefix','fullname','email','organization','role'];
+    for (let id of ids) {
+        if (!document.getElementById(id).value.trim()) {
+            showStatus('result-status-msg', 'กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน', 'error');
+            return false;
+        }
+    }
+    if (!document.getElementById('occupation').value) {
+        showStatus('result-status-msg', 'กรุณาเลือกอาชีพ/สายงาน', 'error');
+        return false;
+    }
+    const scores = getScores();
+    for (let catId in scores) {
+        for (let v of scores[catId]) {
+            if (v === null) {
+                showStatus('result-status-msg', `กรุณาตอบคำถามทุกข้อในหมวด ${catId} ให้ครบถ้วน`, 'error');
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function interpretDesc(catId, avg) {
+    const descs = {
+        LM: {
+            high: { desc: 'คุณเป็นผู้ที่มีแรงจูงใจภายในสูงมาก รักการเรียนรู้อย่างแท้จริง ไม่ว่าจะได้ผลลัพธ์อย่างไรก็ยังสนุกกับการค้นหาความรู้ และไม่ย่อท้อต่ออุปสรรค', improve: 'รักษาแรงจูงใจนี้ด้วยการตั้งเป้าหมายที่ท้าทายขึ้น และแบ่งปันแรงบันดาลใจให้ผู้อื่น' },
+            mid: { desc: 'คุณมีแรงจูงใจในการเรียนรู้ระดับปานกลาง บางครั้งอาจต้องการแรงกระตุ้นเพิ่มเติม', improve: 'ลองสร้างเป้าหมายการเรียนรู้ที่ชัดเจนและให้รางวัลตัวเองเมื่อบรรลุเป้าหมาย' },
+            low: { desc: 'คุณอาจขาดความกระตือรือร้นในการเรียนรู้ ควรหาแรงบันดาลใจและเหตุผลที่แท้จริง', improve: 'เริ่มจากหัวข้อที่ชอบจริง ๆ และหาเพื่อนร่วมเรียนรู้' }
+        },
+        PI: {
+            high: { desc: 'คุณเป็นผู้วางแผนการเรียนรู้ได้ยอดเยี่ยม รู้จักตั้งเป้าหมาย จัดลำดับความสำคัญ บริหารเวลา และหาแหล่งเรียนรู้', improve: 'ลองเพิ่มความยืดหยุ่นให้แผน และใช้เครื่องมือดิจิทัลช่วยจัดการ' },
+            mid: { desc: 'คุณมีการวางแผนระดับปานกลาง แต่ยังต้องปรับปรุงการจัดลำดับความสำคัญและการควบคุมเวลา', improve: 'ลองใช้ Eisenhower Matrix จัดลำดับงาน และใช้ปฏิทินวางแผนล่วงหน้า' },
+            low: { desc: 'คุณควรพัฒนาทักษะการวางแผนและการจัดการตนเอง', improve: 'เริ่มจากเป้าหมายเล็ก ๆ ที่ทำได้จริง และค่อย ๆ เพิ่มความซับซ้อน' }
+        },
+        SM: {
+            high: { desc: 'คุณมีความตระหนักรู้ในตนเองสูง เชื่อมโยงความรู้ใหม่กับประสบการณ์เดิม เข้าใจจุดแข็งจุดอ่อน และติดตามความก้าวหน้าได้ดี', improve: 'ลองทำ Reflective Journal และขอ Feedback จากผู้อื่น' },
+            mid: { desc: 'คุณกำกับติดตามตนเองได้ปานกลาง ควรฝึกการสะท้อนคิดและประเมินตนเองสม่ำเสมอ', improve: 'ลองตั้งเวลาทบทวนตนเองทุกสัปดาห์' },
+            low: { desc: 'คุณควรพัฒนาทักษะการติดตามและประเมินตนเอง', improve: 'เริ่มจากจดบันทึกการเรียนรู้ประจำวัน' }
+        },
+        IC: {
+            high: { desc: 'คุณมีทักษะการสื่อสารระหว่างบุคคลที่ดีเยี่ยม นำเสนอ พูด และเขียนสื่อสารได้อย่างมีประสิทธิภาพ', improve: 'ลองขยายเครือข่ายข้ามวัฒนธรรมหรือข้ามสาขา' },
+            mid: { desc: 'คุณมีทักษะการสื่อสารระดับปานกลาง ควรฝึกเพิ่มเติมทั้งพูดและเขียน', improve: 'ลองฝึกนำเสนอในที่ประชุมเล็ก ๆ และเขียนบันทึกสั้น ๆ ประจำ' },
+            low: { desc: 'คุณควรพัฒนาทักษะการสื่อสารระหว่างบุคคล', improve: 'เริ่มจากฝึกนำเสนอหน้ากระจกและเขียนสรุปสิ่งที่เรียนรู้' }
+        }
+    };
+    if (avg >= 4.0) return descs[catId].high;
+    if (avg >= 2.5) return descs[catId].mid;
+    return descs[catId].low;
+}
+
+function calculateResults() {
+    document.getElementById('result-status-msg').className = 'status-msg';
+    document.getElementById('result-status-msg').style.display = 'none';
+    if (!validateAll()) return;
+
+    const scores = getScores();
+    const prefix = document.getElementById('prefix').value.trim();
+    const fullname = document.getElementById('fullname').value.trim();
+    document.getElementById('profile-summary').style.display = 'block';
+    document.getElementById('profile-summary').innerHTML = `👤 <strong>${prefix}${fullname}</strong> | <strong>อาชีพ:</strong> ${document.getElementById('occupation').value}`;
+
+    let html = '';
+    categories.forEach(cat => {
+        const vals = scores[cat.id];
+        const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+        const avgFixed = avg.toFixed(2);
+        const interp = interpretDesc(cat.id, avg);
+        let levelClass = avg >= 4.0 ? 'high' : (avg <= 2.4 ? 'low' : 'medium');
+        html += `<div class="result-card ${levelClass}" style="border-left-color:${cat.color};">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:700; font-size:0.95em;">${cat.name}</div>
+                <div><span class="score">${avgFixed}</span> <span class="score-label">/ 5</span></div>
+            </div>
+            <div class="desc">${interp.desc}</div>
+            <div class="improve">💡 ${interp.improve}</div>
+        </div>`;
+    });
+    document.getElementById('result-grid').innerHTML = html;
+    switchTab('result');
+}
+
+function saveResult() {
+    const btn = document.getElementById('btn-save');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading"></span> กำลังบันทึก...';
+    
+    const scores = getScores();
+    const prefix = document.getElementById('prefix').value.trim();
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const org = document.getElementById('organization').value.trim();
+    const occ = document.getElementById('occupation').value;
+    const role = document.getElementById('role').value.trim();
+    
+    if (!prefix||!fullname||!email||!org||!occ||!role) {
+        showStatus('result-status-msg','กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน','error');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+        return;
+    }
+    for (let catId in scores) {
+        for (let v of scores[catId]) {
+            if (v === null) { 
+                showStatus('result-status-msg','กรุณาตอบทุกข้อก่อนบันทึก','error');
+                btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+                return; 
+            }
+        }
+    }
+    
+    const now = new Date();
+    const thaiTime = now.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    
+    const payload = {
+        timestamp: thaiTime,
+        prefix, fullname, email, org, occ, role,
+        scores: JSON.parse(JSON.stringify(scores))
+    };
+    
+    fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        showStatus('result-status-msg',`✅ บันทึกข้อมูลของ ${prefix}${fullname} สำเร็จ! (${thaiTime})`,'success');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+    })
+    .catch((err) => {
+        showStatus('result-status-msg',`❌ เกิดข้อผิดพลาด: ${err.message}`,'error');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+    });
+}
+
+function refreshAdmin() {
+    document.getElementById('no-data-msg').textContent = 'กำลังโหลดข้อมูล...';
+    document.getElementById('no-data-msg').style.display = 'block';
+    document.getElementById('admin-tbody').innerHTML = '';
+    
+    fetch(APPS_SCRIPT_URL + '?t=' + Date.now())
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            cachedData = data.data;
+            renderAdminTable(data.data);
+        } else {
+            showStatus('admin-status-msg','❌ โหลดข้อมูลไม่สำเร็จ: '+data.message,'error');
+            document.getElementById('no-data-msg').textContent = 'ไม่สามารถโหลดข้อมูลได้';
+        }
+    })
+    .catch(err => {
+        showStatus('admin-status-msg','❌ ไม่สามารถเชื่อมต่อ Server: '+err.message,'error');
+        document.getElementById('no-data-msg').textContent = 'เชื่อมต่อ Server ไม่ได้';
+    });
+}
+
+function renderAdminTable(rows) {
+    const tbody = document.getElementById('admin-tbody');
+    const noMsg = document.getElementById('no-data-msg');
+    
+    if (!rows || rows.length === 0) {
+        tbody.innerHTML = '';
+        noMsg.style.display = 'block';
+        noMsg.textContent = 'ยังไม่มีข้อมูลในฐานข้อมูล';
+        document.getElementById('data-count').textContent = '0';
+        return;
+    }
+    
+    document.getElementById('data-count').textContent = rows.length;
+    noMsg.style.display = 'none';
+    
+    let html = '';
+    rows.forEach((r, i) => {
+        html += `<tr>
+            <td>${i+1}</td>
+            <td>${r['Timestamp']||r['วันที่-เวลา']||''}</td>
+            <td>${r['คำนำหน้า']||''}</td>
+            <td>${r['ชื่อ-สกุล']||r['Name-Lastname']||''}</td>
+            <td>${r['E-mail']||r['Email']||''}</td>
+            <td>${r['สังกัด/หน่วยงาน']||r['Organization']||''}</td>
+            <td>${r['อาชีพ']||r['Occupation']||''}</td>
+            <td>${r['บทบาทหน้าที่']||r['Role']||''}</td>
+            <td>${r['LM1']||''}</td><td>${r['LM2']||''}</td><td>${r['LM3']||''}</td><td>${r['LM4']||''}</td><td>${r['LM5']||''}</td><td>${r['LM6']||''}</td>
+            <td><strong>${r['Avg_LM']||r['ค่าเฉลี่ย LM']||''}</strong></td>
+            <td>${r['PI1']||''}</td><td>${r['PI2']||''}</td><td>${r['PI3']||''}</td><td>${r['PI4']||''}</td><td>${r['PI5']||''}</td><td>${r['PI6']||''}</td>
+            <td><strong>${r['Avg_PI']||r['ค่าเฉลี่ย PI']||''}</strong></td>
+            <td>${r['SM1']||''}</td><td>${r['SM2']||''}</td><td>${r['SM3']||''}</td><td>${r['SM4']||''}</td>
+            <td><strong>${r['Avg_SM']||r['ค่าเฉลี่ย SM']||''}</strong></td>
+            <td>${r['IC1']||''}</td><td>${r['IC2']||''}</td><td>${r['IC3']||''}</td><td>${r['IC4']||''}</td>
+            <td><strong>${r['Avg_IC']||r['ค่าเฉลี่ย IC']||''}</strong></td>
+        </tr>`;
+    });
+    tbody.innerHTML = html;
+}
+
+function fetchAndExport() {
+    fetch(APPS_SCRIPT_URL + '?t=' + Date.now())
+    .then(res => res.json())
+    .then(data => {
+        if (data.success && data.csv) {
+            const blob = new Blob([data.csv], {type: 'text/csv;charset=utf-8;'});
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `SDL_Pretest_Data_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+            showStatus('admin-status-msg',`✅ ดาวน์โหลด CSV สำเร็จ — ${data.data.length} รายการ`,'success');
+        } else {
+            showStatus('admin-status-msg', '❌ ไม่มีข้อมูลให้ดาวน์โหลด','error');
+        }
+    })
+    .catch(err => {
+        showStatus('admin-status-msg', '❌ เกิดข้อผิดพลาด: '+err.message,'error');
+    });
+}
+
+function showStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    el.className = 'status-msg '+type;
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab-content, .tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.querySelector(`.tab-btn[onclick*="'${tab}'"]`).classList.add('active');
+    if (tab === 'admin') refreshAdmin();
+    if (tab === 'form' || tab === 'result') {
+        document.getElementById('result-status-msg').className = 'status-msg';
+        document.getElementById('result-status-msg').style.display = 'none';
+    }
+}
+
+renderQuestions();
+</script>
 </body>
 </html>
