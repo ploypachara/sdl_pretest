@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบประเมิน Self-Directed Learning</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif; background: #f0f4f8; color: #1a1a2e; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { text-align: center; color: #16213e; margin-bottom: 5px; font-size: 1.8em; }
+    .subtitle { text-align: center; color: #555; margin-bottom: 30px; font-size: 0.95em; }
+    .section { background: #fff; border-radius: 12px; padding: 25px 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .section-title { font-size: 1.2em; font-weight: 700; color: #0f3460; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 3px solid #e94560; display: inline-block; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9em; color: #333; }
+    label small { font-weight: 400; color: #777; }
+    input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 0.95em; transition: 0.2s; font-family: inherit; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #e94560; box-shadow: 0 0 0 3px rgba(233,69,96,0.15); }
+    .rating-table-wrap { overflow-x: auto; margin-bottom: 25px; }
+    .rating-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+    .rating-table th { background: #16213e; color: #fff; padding: 10px 8px; text-align: center; font-weight: 600; }
+    .rating-table th:first-child { text-align: left; min-width: 220px; }
+    .rating-table td { padding: 8px 6px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; }
+    .rating-table tr:hover { background: #f8fafc; }
+    .rating-table .q-text { font-size: 0.88em; line-height: 1.4; }
+    .rating-table .q-text small { display: block; color: #888; font-style: italic; font-weight: 400; }
+    .cat-header { background: #e94560; color: #fff; font-weight: 700; font-size: 0.92em; }
+    .cat-header td { padding: 10px 12px; border: none; }
+    .radio-group { display: flex; justify-content: center; gap: 2px; }
+    .radio-group label { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: 0.15s; margin: 0; background: #f3f4f6; color: #555; border: 1.5px solid transparent; }
+    .radio-group input { display: none; }
+    .radio-group input:checked + label { background: #e94560; color: #fff; border-color: #e94560; transform: scale(1.05); }
+    .radio-group label:hover { background: #fce4e8; border-color: #e94560; }
+    .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1em; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: #16213e; color: #fff; }
+    .btn-primary:hover { background: #0f3460; transform: translateY(-1px); }
+    .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-success:hover { background: #047857; }
+    .btn-danger { background: #dc2626; color: #fff; }
+    .btn-danger:hover { background: #b91c1c; }
+    .btn-outline { background: transparent; color: #16213e; border: 2px solid #16213e; }
+    .btn-outline:hover { background: #16213e; color: #fff; }
+    .text-center { text-align: center; }
+    .mt-15 { margin-top: 15px; }
+    .flex-center { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .result-card { background: #f8fafc; border-radius: 10px; padding: 18px; border-left: 5px solid #16213e; }
+    .result-card.high { border-left-color: #059669; }
+    .result-card.medium { border-left-color: #f59e0b; }
+    .result-card.low { border-left-color: #dc2626; }
+    .result-card .score { font-size: 2em; font-weight: 800; color: #16213e; }
+    .result-card .score-label { font-size: 0.85em; color: #666; }
+    .result-card .desc { font-size: 0.88em; color: #444; margin-top: 6px; line-height: 1.5; }
+    .result-card .improve { font-size: 0.85em; color: #059669; margin-top: 6px; font-weight: 500; }
+    .admin-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+    .badge { background: #e94560; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 700; }
+    .table-wrap { overflow-x: auto; max-height: 400px; overflow-y: auto; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.75em; }
+    .data-table th { background: #16213e; color: #fff; padding: 8px 6px; position: sticky; top: 0; z-index: 2; white-space: nowrap; }
+    .data-table td { padding: 6px; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+    .data-table tr:nth-child(even) { background: #f9fafb; }
+    .data-table tr:hover { background: #fce4e8; }
+    .no-data { text-align: center; padding: 30px; color: #999; font-style: italic; }
+    .status-msg { padding: 12px; border-radius: 8px; margin-bottom: 15px; font-weight: 500; display: none; }
+    .status-msg.success { display: block; background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .status-msg.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .tab-bar { display: flex; gap: 4px; margin-bottom: 20px; background: #e5e7eb; border-radius: 10px; padding: 4px; }
+    .tab-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9em; }
+    .tab-btn.active { background: #16213e; color: #fff; }
+    .tab-btn:hover:not(.active) { background: #d1d5db; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .loading { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.6s linear infinite; margin-right: 6px; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 768px) {
+        .form-grid { grid-template-columns: 1fr; }
+        .result-grid { grid-template-columns: 1fr; }
+        .rating-table th:first-child { min-width: 150px; }
+        .radio-group label { width: 30px; height: 30px; font-size: 0.75em; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>📋 แบบประเมิน Pre-test ความรู้ความเข้าใจ</h1>
+    <p class="subtitle">เรื่อง Self-Directed Learning (การเรียนรู้ด้วยตนเอง)</p>
+
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('form')">📝 แบบประเมิน</button>
+        <button class="tab-btn" onclick="switchTab('result')">📊 ผลลัพธ์</button>
+        <button class="tab-btn" onclick="switchTab('admin')">⚙️ Admin</button>
+    </div>
+
+    <!-- TAB 1: FORM -->
+    <div id="tab-form" class="tab-content active">
+        <div class="section">
+            <div class="section-title">📌 ส่วนที่ 1 ข้อมูลส่วนบุคคล</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>1. คำนำหน้า / Prefix <small>(ยศ/นาย/นาง/นางสาว)</small></label>
+                    <input type="text" id="prefix" placeholder="เช่น นาย, นาง, นางสาว, พ.ท.">
+                </div>
+                <div class="form-group">
+                    <label>2. ชื่อ-สกุล / Name-Lastname</label>
+                    <input type="text" id="fullname" placeholder="กรุณากรอกชื่อและนามสกุล">
+                </div>
+                <div class="form-group">
+                    <label>3. E-mail</label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>4. สังกัด/หน่วยงาน / Organization</label>
+                    <input type="text" id="organization" placeholder="เช่น คณะศึกษาศาสตร์ ม.รามคำแหง">
+                </div>
+                <div class="form-group">
+                    <label>5. อาชีพหรือสายงาน / Occupation</label>
+                    <select id="occupation">
+                        <option value="">— กรุณาเลือก —</option>
+                        <option value="อาจารย์/Teacher">อาจารย์ / Teacher</option>
+                        <option value="นักวิจัย/Researcher">นักวิจัย / Researcher</option>
+                        <option value="นักวิชาการ/Academic Expert">นักวิชาการ / Academic Expert</option>
+                        <option value="บุคลากรสายสนับสนุนวิชาการ/Academic Support Personnel">บุคลากรสายสนับสนุนวิชาการ / Academic Support Personnel</option>
+                        <option value="เจ้าหน้าที่/Officer">เจ้าหน้าที่ / Officer</option>
+                        <option value="นักศึกษา/Student">นักศึกษา / Student</option>
+                        <option value="อื่นๆ/Other">อื่นๆ / Other</option>
+                    </select>
+                </div>
+                <div class="form-group full">
+                    <label>6. บทบาทหน้าที่ของท่านในงานด้านการศึกษา</label>
+                    <input type="text" id="role" placeholder="เช่น ผู้สอนรายวิชา, นิสิตฝึกสอน, ผู้ช่วยวิจัย">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📌 ส่วนที่ 2 แบบประเมินความรู้ความเข้าใจ</div>
+            <p style="color:#666; font-size:0.88em; margin-bottom:15px;">กรุณาเลือกระดับที่ตรงกับตัวท่านมากที่สุด: <strong>5</strong> = มากที่สุด, <strong>4</strong> = มาก, <strong>3</strong> = ปานกลาง, <strong>2</strong> = น้อย, <strong>1</strong> = น้อยที่สุด</p>
+            <div id="rating-questions"></div>
+            <div class="text-center mt-15">
+                <button class="btn btn-primary" onclick="calculateResults()">📊 ดูผลลัพธ์</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: RESULTS -->
+    <div id="tab-result" class="tab-content">
+        <div class="section">
+            <div class="section-title">📊 ส่วนที่ 3 ผลลัพธ์การประเมิน</div>
+            <div id="profile-summary" style="background:#f0f4f8; border-radius:8px; padding:12px 18px; margin-bottom:18px; font-size:0.92em; display:none;"></div>
+            <div id="result-status-msg" class="status-msg"></div>
+            <div id="result-grid" class="result-grid"></div>
+            <div class="text-center mt-15">
+                <button class="btn btn-success" onclick="saveResult()" id="btn-save">💾 บันทึกผลลงฐานข้อมูล</button>
+                <button class="btn btn-outline" onclick="switchTab('form')">← แก้ไขคำตอบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: ADMIN -->
+    <div id="tab-admin" class="tab-content">
+        <div class="section">
+            <div class="section-title">⚙️ ส่วนที่ 4 ระบบจัดการข้อมูล (Admin)</div>
+            <div class="admin-controls">
+                <span>📁 ข้อมูลทั้งหมดใน Google Sheets <span class="badge" id="data-count">0</span> รายการ</span>
+                <div>
+                    <button class="btn btn-success" onclick="fetchAndExport()">📥 ดาวน์โหลด CSV (จาก Server)</button>
+                    <button class="btn btn-outline" onclick="refreshAdmin()">🔄 โหลดข้อมูลล่าสุด</button>
+                </div>
+            </div>
+            <div id="admin-status-msg" class="status-msg"></div>
+            <div class="table-wrap">
+                <table class="data-table" id="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th><th>วันที่-เวลา</th><th>คำนำหน้า</th><th>ชื่อ-สกุล</th><th>E-mail</th>
+                            <th>สังกัด</th><th>อาชีพ</th><th>บทบาท</th>
+                            <th>LM1</th><th>LM2</th><th>LM3</th><th>LM4</th><th>LM5</th><th>LM6</th><th>ค่าเฉลี่ย LM</th>
+                            <th>PI1</th><th>PI2</th><th>PI3</th><th>PI4</th><th>PI5</th><th>PI6</th><th>ค่าเฉลี่ย PI</th>
+                            <th>SM1</th><th>SM2</th><th>SM3</th><th>SM4</th><th>ค่าเฉลี่ย SM</th>
+                            <th>IC1</th><th>IC2</th><th>IC3</th><th>IC4</th><th>ค่าเฉลี่ย IC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-tbody"></tbody>
+                </table>
+                <div id="no-data-msg" class="no-data">กำลังโหลดข้อมูล...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 🔥 สำคัญมาก: เปลี่ยน URL นี้เป็น URL ที่ได้จากการ Deploy Apps Script
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTE_K2idvphG9t6fTrlFlKSblm4WdK7oyl4wkzfO9EmOlx5Vhv05a59w24qfDLTtDF/exec';
+
+const categories = [
+    { id: 'LM', name: '1. แรงจูงใจในการเรียนรู้', full: 'Learning Motivation (LM)', color: '#0f3460',
+      items: [
+        'ฉันรู้ว่าตนเองต้องเรียนรู้อะไร / I know what I need to learn.',
+        'ไม่ว่าการเรียนรู้จะได้ผลมากน้อยแค่ไหน ฉันก็ยังชอบเรียนรู้ / Regardless of the results or effectiveness of my learning, I still like learning.',
+        'ฉันมีความตั้งใจที่จะพัฒนาตนเองและเรียนให้ดียิ่งขึ้นอย่างต่อเนื่อง / I strongly hope to constantly improve and excel in my learning.',
+        'ทั้งความสำเร็จและความล้มเหลวเป็นแรงผลักดันให้ฉันเรียนรู้ต่อไป / My successes and failures inspire me to continue learning.',
+        'ฉันสนุกกับการค้นหาคำตอบของคำถามต่าง ๆ / I enjoy finding answers to questions.',
+        'ฉันไม่ยอมเลิกเรียนรู้ แม้จะพบกับอุปสรรคหรือความยากลำบาก / I will not give up learning because I face some difficulties.'
+      ]},
+    { id: 'PI', name: '2. การวางแผนและการลงมือปฏิบัติ', full: 'Planning and Implementing (PI)', color: '#059669',
+      items: [
+        'ฉันสามารถกำหนดเป้าหมายการเรียนรู้ของตนเองได้โดยริเริ่มด้วยตนเอง / I can pro-actively establish my learning goals.',
+        'ฉันรู้ว่ากลยุทธ์การเรียนรู้แบบใดเหมาะสมกับตนเองในการบรรลุเป้าหมายการเรียนรู้ / I know what learning strategies are appropriate for me in reaching my learning goals.',
+        'ฉันสามารถจัดลำดับความสำคัญของสิ่งที่ต้องเรียนรู้ได้ / I set the priorities of my learning.',
+        'ไม่ว่าจะเป็นการเรียนในชั้นเรียน การฝึกปฏิบัติ หรือการเรียนด้วยตนเอง ฉันสามารถเรียนตามแผนที่วางไว้ได้ / Whether in the clinical practicum, classroom or on my own, I am able to follow my own plan of learning.',
+        'ฉันสามารถจัดสรรและควบคุมเวลาในการเรียนของตนเองได้ดี / I am good at arranging and controlling my learning time.',
+        'ฉันรู้จักแหล่งข้อมูลและสามารถค้นหาทรัพยากรเพื่อการเรียนรู้ได้ / I know how to find resources for my learning.'
+      ]},
+    { id: 'SM', name: '3. การกำกับและติดตามการเรียนรู้ของตนเอง', full: 'Self-Monitoring (SM)', color: '#f59e0b',
+      items: [
+        'ฉันสามารถนำความรู้ใหม่มาเชื่อมโยงกับประสบการณ์เดิมของตนเองได้ / I can connect new knowledge with my own personal experiences.',
+        'ฉันเข้าใจจุดแข็งและจุดอ่อน/ข้อจำกัดของการเรียนรู้ของตนเอง / I understand the strengths and weakness of my learning.',
+        'ฉันสามารถติดตามความก้าวหน้าในการเรียนรู้ของตนเองได้ / I can monitor my learning progress.',
+        'ฉันสามารถประเมินผลลัพธ์การเรียนรู้ของตนเองได้ / I can evaluate on my own my learning outcomes.'
+      ]},
+    { id: 'IC', name: '4. การสื่อสารระหว่างบุคคล', full: 'Interpersonal Communication (IC)', color: '#8b5cf6',
+      items: [
+        'การมีปฏิสัมพันธ์กับผู้อื่นช่วยให้ฉันวางแผนการเรียนรู้ในอนาคตได้ดีขึ้น / My interaction with others helps me plan for further learning.',
+        'ฉันมีความสนใจที่จะเรียนรู้ภาษาและวัฒนธรรมของผู้ที่ต้องสื่อสารและทำงานร่วมกันด้วยเป็นประจำ / I would like to learn the language and culture of those whom I frequently interact with.',
+        'ฉันสามารถพูดนำเสนอให้คนอื่นเข้าใจได้ดี / I am able to express messages effectively in oral presentations.',
+        'ฉันสามารถเขียนสื่อสารได้ดี / I am able to communicate messages effectively in writing.'
+      ]}
+];
+
+let cachedData = [];
+
+function renderQuestions() {
+    let html = '';
+    categories.forEach(cat => {
+        html += `<table class="rating-table" style="margin-bottom:20px;">`;
+        html += `<tr class="cat-header"><td colspan="6">${cat.name} — ${cat.full}</td></tr>`;
+        html += `<tr><th style="width:40%;">ข้อความ / Statement</th><th style="width:12%;">5<br>มากที่สุด</th><th style="width:12%;">4<br>มาก</th><th style="width:12%;">3<br>ปานกลาง</th><th style="width:12%;">2<br>น้อย</th><th style="width:12%;">1<br>น้อยที่สุด</th></tr>`;
+        cat.items.forEach((q, i) => {
+            const name = `${cat.id}_q${i}`;
+            html += `<tr><td class="q-text">${q}</td>`;
+            for (let v = 5; v >= 1; v--) {
+                html += `<td><div class="radio-group"><input type="radio" name="${name}" id="${name}_${v}" value="${v}"><label for="${name}_${v}">${v}</label></div></td>`;
+            }
+            html += `</tr>`;
+        });
+        html += `</table>`;
+    });
+    document.getElementById('rating-questions').innerHTML = html;
+}
+
+function getScores() {
+    const result = {};
+    categories.forEach(cat => {
+        const vals = [];
+        cat.items.forEach((_, i) => {
+            const radios = document.querySelectorAll(`input[name="${cat.id}_q${i}"]`);
+            let selected = null;
+            radios.forEach(r => { if (r.checked) selected = parseInt(r.value); });
+            vals.push(selected);
+        });
+        result[cat.id] = vals;
+    });
+    return result;
+}
+
+function validateAll() {
+    const ids = ['prefix','fullname','email','organization','role'];
+    for (let id of ids) {
+        if (!document.getElementById(id).value.trim()) {
+            showStatus('result-status-msg', 'กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน', 'error');
+            return false;
+        }
+    }
+    if (!document.getElementById('occupation').value) {
+        showStatus('result-status-msg', 'กรุณาเลือกอาชีพ/สายงาน', 'error');
+        return false;
+    }
+    const scores = getScores();
+    for (let catId in scores) {
+        for (let v of scores[catId]) {
+            if (v === null) {
+                showStatus('result-status-msg', `กรุณาตอบคำถามทุกข้อในหมวด ${catId} ให้ครบถ้วน`, 'error');
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function interpretDesc(catId, avg) {
+    const descs = {
+        LM: {
+            high: { desc: 'คุณเป็นผู้ที่มีแรงจูงใจภายในสูงมาก รักการเรียนรู้อย่างแท้จริง ไม่ว่าจะได้ผลลัพธ์อย่างไรก็ยังสนุกกับการค้นหาความรู้ และไม่ย่อท้อต่ออุปสรรค', improve: 'รักษาแรงจูงใจนี้ด้วยการตั้งเป้าหมายที่ท้าทายขึ้น และแบ่งปันแรงบันดาลใจให้ผู้อื่น' },
+            mid: { desc: 'คุณมีแรงจูงใจในการเรียนรู้ระดับปานกลาง บางครั้งอาจต้องการแรงกระตุ้นเพิ่มเติม', improve: 'ลองสร้างเป้าหมายการเรียนรู้ที่ชัดเจนและให้รางวัลตัวเองเมื่อบรรลุเป้าหมาย' },
+            low: { desc: 'คุณอาจขาดความกระตือรือร้นในการเรียนรู้ ควรหาแรงบันดาลใจและเหตุผลที่แท้จริง', improve: 'เริ่มจากหัวข้อที่ชอบจริง ๆ และหาเพื่อนร่วมเรียนรู้' }
+        },
+        PI: {
+            high: { desc: 'คุณเป็นผู้วางแผนการเรียนรู้ได้ยอดเยี่ยม รู้จักตั้งเป้าหมาย จัดลำดับความสำคัญ บริหารเวลา และหาแหล่งเรียนรู้', improve: 'ลองเพิ่มความยืดหยุ่นให้แผน และใช้เครื่องมือดิจิทัลช่วยจัดการ' },
+            mid: { desc: 'คุณมีการวางแผนระดับปานกลาง แต่ยังต้องปรับปรุงการจัดลำดับความสำคัญและการควบคุมเวลา', improve: 'ลองใช้ Eisenhower Matrix จัดลำดับงาน และใช้ปฏิทินวางแผนล่วงหน้า' },
+            low: { desc: 'คุณควรพัฒนาทักษะการวางแผนและการจัดการตนเอง', improve: 'เริ่มจากเป้าหมายเล็ก ๆ ที่ทำได้จริง และค่อย ๆ เพิ่มความซับซ้อน' }
+        },
+        SM: {
+            high: { desc: 'คุณมีความตระหนักรู้ในตนเองสูง เชื่อมโยงความรู้ใหม่กับประสบการณ์เดิม เข้าใจจุดแข็งจุดอ่อน และติดตามความก้าวหน้าได้ดี', improve: 'ลองทำ Reflective Journal และขอ Feedback จากผู้อื่น' },
+            mid: { desc: 'คุณกำกับติดตามตนเองได้ปานกลาง ควรฝึกการสะท้อนคิดและประเมินตนเองสม่ำเสมอ', improve: 'ลองตั้งเวลาทบทวนตนเองทุกสัปดาห์' },
+            low: { desc: 'คุณควรพัฒนาทักษะการติดตามและประเมินตนเอง', improve: 'เริ่มจากจดบันทึกการเรียนรู้ประจำวัน' }
+        },
+        IC: {
+            high: { desc: 'คุณมีทักษะการสื่อสารระหว่างบุคคลที่ดีเยี่ยม นำเสนอ พูด และเขียนสื่อสารได้อย่างมีประสิทธิภาพ', improve: 'ลองขยายเครือข่ายข้ามวัฒนธรรมหรือข้ามสาขา' },
+            mid: { desc: 'คุณมีทักษะการสื่อสารระดับปานกลาง ควรฝึกเพิ่มเติมทั้งพูดและเขียน', improve: 'ลองฝึกนำเสนอในที่ประชุมเล็ก ๆ และเขียนบันทึกสั้น ๆ ประจำ' },
+            low: { desc: 'คุณควรพัฒนาทักษะการสื่อสารระหว่างบุคคล', improve: 'เริ่มจากฝึกนำเสนอหน้ากระจกและเขียนสรุปสิ่งที่เรียนรู้' }
+        }
+    };
+    if (avg >= 4.0) return descs[catId].high;
+    if (avg >= 2.5) return descs[catId].mid;
+    return descs[catId].low;
+}
+
+function calculateResults() {
+    document.getElementById('result-status-msg').className = 'status-msg';
+    document.getElementById('result-status-msg').style.display = 'none';
+    if (!validateAll()) return;
+
+    const scores = getScores();
+    const prefix = document.getElementById('prefix').value.trim();
+    const fullname = document.getElementById('fullname').value.trim();
+    document.getElementById('profile-summary').style.display = 'block';
+    document.getElementById('profile-summary').innerHTML = `👤 <strong>${prefix}${fullname}</strong> | <strong>อาชีพ:</strong> ${document.getElementById('occupation').value}`;
+
+    let html = '';
+    categories.forEach(cat => {
+        const vals = scores[cat.id];
+        const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+        const avgFixed = avg.toFixed(2);
+        const interp = interpretDesc(cat.id, avg);
+        let levelClass = avg >= 4.0 ? 'high' : (avg <= 2.4 ? 'low' : 'medium');
+        html += `<div class="result-card ${levelClass}" style="border-left-color:${cat.color};">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:700; font-size:0.95em;">${cat.name}</div>
+                <div><span class="score">${avgFixed}</span> <span class="score-label">/ 5</span></div>
+            </div>
+            <div class="desc">${interp.desc}</div>
+            <div class="improve">💡 ${interp.improve}</div>
+        </div>`;
+    });
+    document.getElementById('result-grid').innerHTML = html;
+    switchTab('result');
+}
+
+function saveResult() {
+    const btn = document.getElementById('btn-save');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading"></span> กำลังบันทึก...';
+    
+    const scores = getScores();
+    const prefix = document.getElementById('prefix').value.trim();
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const org = document.getElementById('organization').value.trim();
+    const occ = document.getElementById('occupation').value;
+    const role = document.getElementById('role').value.trim();
+    
+    if (!prefix||!fullname||!email||!org||!occ||!role) {
+        showStatus('result-status-msg','กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน','error');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+        return;
+    }
+    for (let catId in scores) {
+        for (let v of scores[catId]) {
+            if (v === null) { 
+                showStatus('result-status-msg','กรุณาตอบทุกข้อก่อนบันทึก','error');
+                btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+                return; 
+            }
+        }
+    }
+    
+    const now = new Date();
+    const thaiTime = now.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    
+    const payload = {
+        timestamp: thaiTime,
+        prefix, fullname, email, org, occ, role,
+        scores: JSON.parse(JSON.stringify(scores))
+    };
+    
+    fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        showStatus('result-status-msg',`✅ บันทึกข้อมูลของ ${prefix}${fullname} สำเร็จ! (${thaiTime})`,'success');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+    })
+    .catch((err) => {
+        showStatus('result-status-msg',`❌ เกิดข้อผิดพลาด: ${err.message}`,'error');
+        btn.disabled = false; btn.innerHTML = '💾 บันทึกผลลงฐานข้อมูล';
+    });
+}
+
+function refreshAdmin() {
+    document.getElementById('no-data-msg').textContent = 'กำลังโหลดข้อมูล...';
+    document.getElementById('no-data-msg').style.display = 'block';
+    document.getElementById('admin-tbody').innerHTML = '';
+    
+    fetch(APPS_SCRIPT_URL + '?t=' + Date.now())
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            cachedData = data.data;
+            renderAdminTable(data.data);
+        } else {
+            showStatus('admin-status-msg','❌ โหลดข้อมูลไม่สำเร็จ: '+data.message,'error');
+            document.getElementById('no-data-msg').textContent = 'ไม่สามารถโหลดข้อมูลได้';
+        }
+    })
+    .catch(err => {
+        showStatus('admin-status-msg','❌ ไม่สามารถเชื่อมต่อ Server: '+err.message,'error');
+        document.getElementById('no-data-msg').textContent = 'เชื่อมต่อ Server ไม่ได้';
+    });
+}
+
+function renderAdminTable(rows) {
+    const tbody = document.getElementById('admin-tbody');
+    const noMsg = document.getElementById('no-data-msg');
+    
+    if (!rows || rows.length === 0) {
+        tbody.innerHTML = '';
+        noMsg.style.display = 'block';
+        noMsg.textContent = 'ยังไม่มีข้อมูลในฐานข้อมูล';
+        document.getElementById('data-count').textContent = '0';
+        return;
+    }
+    
+    document.getElementById('data-count').textContent = rows.length;
+    noMsg.style.display = 'none';
+    
+    let html = '';
+    rows.forEach((r, i) => {
+        html += `<tr>
+            <td>${i+1}</td>
+            <td>${r['Timestamp']||r['วันที่-เวลา']||''}</td>
+            <td>${r['คำนำหน้า']||''}</td>
+            <td>${r['ชื่อ-สกุล']||r['Name-Lastname']||''}</td>
+            <td>${r['E-mail']||r['Email']||''}</td>
+            <td>${r['สังกัด/หน่วยงาน']||r['Organization']||''}</td>
+            <td>${r['อาชีพ']||r['Occupation']||''}</td>
+            <td>${r['บทบาทหน้าที่']||r['Role']||''}</td>
+            <td>${r['LM1']||''}</td><td>${r['LM2']||''}</td><td>${r['LM3']||''}</td><td>${r['LM4']||''}</td><td>${r['LM5']||''}</td><td>${r['LM6']||''}</td>
+            <td><strong>${r['Avg_LM']||r['ค่าเฉลี่ย LM']||''}</strong></td>
+            <td>${r['PI1']||''}</td><td>${r['PI2']||''}</td><td>${r['PI3']||''}</td><td>${r['PI4']||''}</td><td>${r['PI5']||''}</td><td>${r['PI6']||''}</td>
+            <td><strong>${r['Avg_PI']||r['ค่าเฉลี่ย PI']||''}</strong></td>
+            <td>${r['SM1']||''}</td><td>${r['SM2']||''}</td><td>${r['SM3']||''}</td><td>${r['SM4']||''}</td>
+            <td><strong>${r['Avg_SM']||r['ค่าเฉลี่ย SM']||''}</strong></td>
+            <td>${r['IC1']||''}</td><td>${r['IC2']||''}</td><td>${r['IC3']||''}</td><td>${r['IC4']||''}</td>
+            <td><strong>${r['Avg_IC']||r['ค่าเฉลี่ย IC']||''}</strong></td>
+        </tr>`;
+    });
+    tbody.innerHTML = html;
+}
+
+function fetchAndExport() {
+    fetch(APPS_SCRIPT_URL + '?t=' + Date.now())
+    .then(res => res.json())
+    .then(data => {
+        if (data.success && data.csv) {
+            const blob = new Blob([data.csv], {type: 'text/csv;charset=utf-8;'});
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `SDL_Pretest_Data_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+            showStatus('admin-status-msg',`✅ ดาวน์โหลด CSV สำเร็จ — ${data.data.length} รายการ`,'success');
+        } else {
+            showStatus('admin-status-msg', '❌ ไม่มีข้อมูลให้ดาวน์โหลด','error');
+        }
+    })
+    .catch(err => {
+        showStatus('admin-status-msg', '❌ เกิดข้อผิดพลาด: '+err.message,'error');
+    });
+}
+
+function showStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    el.className = 'status-msg '+type;
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab-content, .tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.querySelector(`.tab-btn[onclick*="'${tab}'"]`).classList.add('active');
+    if (tab === 'admin') refreshAdmin();
+    if (tab === 'form' || tab === 'result') {
+        document.getElementById('result-status-msg').className = 'status-msg';
+        document.getElementById('result-status-msg').style.display = 'none';
+    }
+}
+
+renderQuestions();
+</script>
+</body>
+</html>
