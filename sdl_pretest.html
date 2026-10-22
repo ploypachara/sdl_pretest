@@ -10,10 +10,14 @@
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
     p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Thonburi}
     p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 21.3px Helvetica; color: #000000; -webkit-text-stroke: #000000}
     span.s1 {font: 12.0px Thonburi}
     span.s2 {font: 12.0px Helvetica}
     span.s3 {font: 12.0px 'Apple Color Emoji'}
     span.s4 {font: 12.0px 'Lucida Grande'}
+    span.s5 {font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s6 {font-kerning: none}
+    span.s7 {font: 12.0px Times; font-kerning: none}
   </style>
 </head>
 <body>
@@ -213,7 +217,7 @@
 <p class="p3"><br></p>
 <p class="p1">&lt;script&gt;</p>
 <p class="p1">// <span class="s3">🔥</span> <span class="s1">สำคัญมาก</span>: <span class="s1">เปลี่ยน</span> URL <span class="s1">นี้เป็น</span> URL <span class="s1">ที่ได้จากการ</span> Deploy Apps Script</p>
-<p class="p1">const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTE_K2idvphG9t6fTrlFlKSblm4WdK7oyl4wkzfO9EmOlx5Vhv05a59w24qfDLTtDF/exec';</p>
+<p class="p4"><span class="s5">const APPS_SCRIPT_URL = '</span><span class="s6">https://script.google.com/macros/s/AKfycbzghmsv1YJ07T-ejTEmI73Z0svyx71UYjIFrsGGt-JA7RiHCsSpj4SH62X6kC1oQ7T_/exec</span><span class="s7"> </span><span class="s5">';</span></p>
 <p class="p3"><br></p>
 <p class="p1">const categories = [</p>
 <p class="p1"><span class="Apple-converted-space">    </span>{ id: 'LM', name: '1. <span class="s1">แรงจูงใจในการเรียนรู้</span>', full: 'Learning Motivation (LM)', color: '#0f3460',</p>
@@ -408,7 +412,6 @@
 <p class="p3"><span class="Apple-converted-space">    </span></p>
 <p class="p1"><span class="Apple-converted-space">    </span>fetch(APPS_SCRIPT_URL, {</p>
 <p class="p1"><span class="Apple-converted-space">        </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>mode: 'no-cors',</p>
 <p class="p1"><span class="Apple-converted-space">        </span>headers: { 'Content-Type': 'application/json' },</p>
 <p class="p1"><span class="Apple-converted-space">        </span>body: JSON.stringify(payload)</p>
 <p class="p1"><span class="Apple-converted-space">    </span>})</p>
